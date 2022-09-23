@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <Context>
+	 <Resource name="jdbc/usuarios" auth="Container"
+	 type="javax.sql.DataSource"
+	 username="TapasTop" password="TapasTop"
+	 driverClassName="com.mysql.cj.jdbc.Driver"
+	 url="jdbc:mysql://localhost:3306/tapastop?useSSL=false"
+	 maxActive="6" maxIdle="3"/> 
+  </Context>
+ 
