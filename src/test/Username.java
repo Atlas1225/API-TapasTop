@@ -1,5 +1,7 @@
 package test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +23,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonWriter;
+
+import interfaces.Usuario;
+
 @Path("/user/{username}")
 
 public class Username {
@@ -31,18 +40,35 @@ public class Username {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response datosUsuario(@PathParam("username") String username) throws NamingException, SQLException{
         try{
-            DataBase db = new DataBase();
-            String res="{";
-            String sql= "";
+        	DataBase db = new DataBase();
+            String sql= "SELECT * FROM Usuario Where username = ?;";
             PreparedStatement ps = db.conn.prepareStatement(sql);
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
+			rs.next();			
+//			Aquí ya tenemos el usuario
+			Usuario user= new Usuario(rs.getString("gender"),rs.getString("email"),rs.getString("username"),
+			rs.getString("password"),rs.getString("name"),rs.getInt("age"));
+			
+			Gson gson = new Gson();
+			String json= gson.toJson(user);
+			
 
-            if(rs.next()){ //16 atributos (4listas, 
-                    
 
+			
+			
+			db.closeConn();
+			return Response.status(Response.Status.OK).entity(json).build();
+			
+            
         }
-		return null;
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        	return Response.status(Response.Status.NOT_FOUND).entity("usuario no existente").header("Content-Location", uriInfo.getAbsolutePath()).build();
+        }
+
+       
     }
    
 }
+

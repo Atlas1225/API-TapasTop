@@ -28,7 +28,18 @@ public class Usuario {
     private ArrayList<Comida> fav_foods = new ArrayList<>();
     private ArrayList<Degustacion> tasting_list = new ArrayList<>();
     private ArrayList<Galardon> award_list = new ArrayList<>();
-
+    
+    public Usuario(String gender, String email,String username,String password, String name, 
+    		int age){
+    	this.active=false;
+    	this.gender=gender;
+    	this.email=email;
+    	this.username=username;
+    	this.password=password;
+    	this.name=name;
+    	this.age=age;
+    	
+    }
     public boolean isActive() {
 		return this.active;
 	}

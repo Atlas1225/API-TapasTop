@@ -57,9 +57,15 @@ public class Local {
 	public ArrayList<Comida> getLocal_foodList() {
 		return this.local_foodList;
 	}
+	public void setLocal_foodList(ArrayList<Comida>local_foodList) {
+		this.local_foodList = local_foodList;
+	}
 
 	public ArrayList<Bebida> getLocal_drinkList() {
 		return this.local_drinkList;
+	}
+	public void setLocal_drinkList(ArrayList<Bebida>local_drinkList) {
+		this.local_drinkList=local_drinkList;
 	}
 
 	public Coordinates getCoordinates() {
@@ -103,7 +109,7 @@ public class Local {
 		System.out.println(gson.toJson(local));
 		Local local2;
 		local2=gson.fromJson(gson.toJson(local), Local.class);
-		System.out.println(local2.getId());
+		//System.out.println(local2.getId());
 		
 		
 	}
