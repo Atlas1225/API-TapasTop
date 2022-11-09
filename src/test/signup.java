@@ -1,5 +1,6 @@
 package test;
 import java.io.StringReader;
+import java.sql.Blob;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,12 +9,19 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.naming.NamingException;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
+
+import com.google.gson.Gson;
+
+import interfaces.Login;
+
 import javax.ws.rs.core.Context;
 
 @Path("/signup")
@@ -22,24 +30,24 @@ public class signup {
 	private UriInfo uriInfo;
 
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
 	public Response registrarUsuario(JsonObject json){
 		try{
 			DataBase db = new DataBase();
 
 
-			boolean active = rs.getBoolean("active");//DUDA
-			String email = rs.getString("email");
-			String username = rs.getString("username");
-			String password = rs.getString("password");
-			String gender = rs.getString("gender");
-			int age = rs.getInt("age");
-			String name = rs.getString("name");
-			String surname = rs.getString("surname");
-			String text_intro = rs.getString("text_intro");
-			Blob photo = rs.getBlob("photo");
-			String country = rs.getString("country");
-			String location = rs.getString("location");
+			boolean active = json.getBoolean("active");//DUDA
+			String email = json.getString("email");
+			String username = json.getString("username");
+			String password = json.getString("password");
+			String gender = json.getString("gender");
+			int age = json.getInt("age");
+			String name = json.getString("name");
+			String surname = json.getString("surname");
+			String text_intro = json.getString("text_intro");
+			Blob photo = (Blob) json.getJsonObject("photo");
+			String country = json.getString("country");
+			String location = json.getString("location");
 			
 			String sql=" INSERT INTO Usuario VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement ps = db.conn.prepareStatement(sql);
@@ -59,13 +67,13 @@ public class signup {
 
 			Login login = new Login();//cambiar el nombre a la clase al igual pero tiene los mismo parametros
 			login.setUsername(username);
-			login.setLogged(rs.next());//duda
+			login.setLogged(true);//duda
 
 			Gson gson = new Gson();
-            String json = gson.toJson(login);
+            String json1 = gson.toJson(login);
 
 			db.closeConn();
-            return Response.status(Response.Status.OK).entity(json).build();
+            return Response.status(Response.Status.OK).entity(json1).build();
 
 		}catch(Exception e){
 			return Response.status(Response.Status.NOT_FOUND).entity("no es posible registrar").header("Content-Location", uriInfo.getAbsolutePath()).build();

@@ -48,8 +48,7 @@ public class Username {
 			rs.next();			
 //			Aquí ya tenemos el usuario
 			Usuario user= new Usuario(rs.getString("gender"),rs.getString("email"),rs.getString("username"),
-			rs.getString("password"),rs.getString("name"),rs.getInt("age"));
-			
+			rs.getString("password"),rs.getInt("age"));
 			Gson gson = new Gson();
 			String json= gson.toJson(user);
 			

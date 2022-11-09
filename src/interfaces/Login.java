@@ -1,3 +1,4 @@
+package interfaces;
 public class Login{
     private String username;
     private boolean logged;
