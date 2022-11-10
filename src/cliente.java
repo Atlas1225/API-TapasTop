@@ -45,11 +45,11 @@ public class cliente {
 	
 	public static void main(String args[]) {
 		usuario();
-		login("Manolito23","locuelo01");
-		Blob photo= null;
-		//signup(true,"hola@w","hola","truski","male",20,"hola","adios","asdfghjk",photo,"adf","adsfa");
-		login("Manolito23", "locuelo01");
-		signup(true,"hola@w","hola","truski","male",20,"hola","adios","asdfghjk",photo,"adf","adsfa");
+//		login("Manolito23","locuelo01");
+//		Blob photo= null;
+//		//signup(true,"hola@w","hola","truski","male",20,"hola","adios","asdfghjk",photo,"adf","adsfa");
+//		login("Manolito23", "locuelo01");
+//		signup(true,"hola@w","hola","truski","male",20,"hola","adios","asdfghjk",photo,"adf","adsfa");
 		
 	}
 		

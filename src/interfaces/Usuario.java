@@ -25,6 +25,7 @@ public class Usuario {
     private String location;
     private Blob photo;
     private ArrayList<Usuario> friends = new ArrayList<>();
+    private Usuario friend;
     private ArrayList<Comida> fav_foods = new ArrayList<>();
     private ArrayList<Degustacion> tasting_list = new ArrayList<>();
     private ArrayList<Galardon> award_list = new ArrayList<>();
@@ -38,6 +39,9 @@ public class Usuario {
     	this.password=password;
     	this.age=age;
     	
+    }
+    public Usuario getUsuario() {
+    	return this.friend;
     }
     public boolean isActive() {
 		return this.active;
@@ -134,7 +138,10 @@ public class Usuario {
 	public void setPhoto(Blob photo) {
 		this.photo = photo;
 	}
-
+	
+	public Usuario getFriend() {
+		return this.friend;
+	}
 	public ArrayList<Usuario> getFriends() {
 		return this.friends;
 	}
