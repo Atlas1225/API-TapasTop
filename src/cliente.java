@@ -27,7 +27,7 @@ public class cliente {
 	
 	
 	public static void usuario(){
-		Response post = target.path("user").path("Carlos35").request().accept(MediaType.APPLICATION_JSON).get(Response.class);
+		Response post = target.path("user").path("Manolito23").request().accept(MediaType.APPLICATION_JSON).get(Response.class);
 			show(post);
 	}
 	public static void  login(String username, String password) {

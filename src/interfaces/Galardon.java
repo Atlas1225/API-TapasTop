@@ -6,14 +6,14 @@ import java.sql.Blob;
 
 
 public class Galardon {
-	private String id;
+	private int id;
 	private int level;
 	private Blob photo;
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

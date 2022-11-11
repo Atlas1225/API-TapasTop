@@ -5,21 +5,21 @@ import java.sql.Blob;
 import java.util.Date;
 
 public class Degustacion {
-    private Usuario author;
+    private String author;
     private String qualifier_taste;
     private int rating;
     private Blob photo;
     private Date date;
     private String description;
-    private Local local_pointer;
+    private int local_pointer;
     private String origin;
     private String local_dishName;
     
-    public Usuario getAuthor() {
+    public String getAuthor() {
 		return this.author;
 	}
 
-	public void setAuthor(Usuario author) {
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 
@@ -63,11 +63,11 @@ public class Degustacion {
 		this.description = description;
 	}
 
-	public Local getLocal_pointer() {
+	public int getLocal_pointer() {
 		return this.local_pointer;
 	}
 
-	public void setLocal_pointer(Local local_pointer) {
+	public void setLocal_pointer(int local_pointer) {
 		this.local_pointer = local_pointer;
 	}
 

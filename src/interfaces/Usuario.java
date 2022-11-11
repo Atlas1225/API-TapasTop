@@ -24,8 +24,8 @@ public class Usuario {
     private String country;
     private String location;
     private Blob photo;
-    private ArrayList<Usuario> friends = new ArrayList<>();
-    private Usuario friend;
+    private ArrayList<String> friends = new ArrayList<>();
+    private String friend;
     private ArrayList<Comida> fav_foods = new ArrayList<>();
     private ArrayList<Degustacion> tasting_list = new ArrayList<>();
     private ArrayList<Galardon> award_list = new ArrayList<>();
@@ -40,7 +40,7 @@ public class Usuario {
     	this.age=age;
     	
     }
-    public Usuario getUsuario() {
+    public String getUsuario() {
     	return this.friend;
     }
     public boolean isActive() {
@@ -139,14 +139,11 @@ public class Usuario {
 		this.photo = photo;
 	}
 	
-	public Usuario getFriend() {
-		return this.friend;
-	}
-	public ArrayList<Usuario> getFriends() {
+	public ArrayList<String> getFriends() {
 		return this.friends;
 	}
 
-	public void setFriends(ArrayList<Usuario> friends) {
+	public void setFriends(ArrayList<String> friends) {
 		this.friends = friends;
 	}
 
