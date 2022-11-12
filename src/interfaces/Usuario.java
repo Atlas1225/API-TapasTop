@@ -24,9 +24,9 @@ public class Usuario {
     private String country;
     private String location;
     private Blob photo;
-    private ArrayList<String> friends = new ArrayList<>();
+    private ArrayList<Usuario> friends = new ArrayList<>();
     private String friend;
-    private ArrayList<Comida> fav_foods = new ArrayList<>();
+    private ArrayList<Degustacion> fav_foods = new ArrayList<>();
     private ArrayList<Degustacion> tasting_list = new ArrayList<>();
     private ArrayList<Galardon> award_list = new ArrayList<>();
     
@@ -139,19 +139,19 @@ public class Usuario {
 		this.photo = photo;
 	}
 	
-	public ArrayList<String> getFriends() {
+	public ArrayList<Usuario> getFriends() {
 		return this.friends;
 	}
 
-	public void setFriends(ArrayList<String> friends) {
+	public void setFriends(ArrayList<Usuario> friends) {
 		this.friends = friends;
 	}
 
-	public ArrayList<Comida> getFav_foods() {
+	public ArrayList<Degustacion> getFav_foods() {
 		return this.fav_foods;
 	}
 
-	public void setFav_foods(ArrayList<Comida> fav_foods) {
+	public void setFav_foods(ArrayList<Degustacion> fav_foods) {
 		this.fav_foods = fav_foods;
 	}
 

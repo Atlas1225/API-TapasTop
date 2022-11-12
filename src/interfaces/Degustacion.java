@@ -1,19 +1,20 @@
 package interfaces;
 
-import java.awt.image.BufferedImage;
-import java.sql.Blob;
 import java.util.Date;
 
 public class Degustacion {
-    private String author;
+    private String author;//username
     private String qualifier_taste;
     private int rating;
-    private Blob photo;
+    private String photo;
     private Date date;
     private String description;
-    private int local_pointer;
+    private Local local_pointer;
     private String origin;
-    private String local_dishName;
+    private String dish_name;
+	private String type;
+
+	
     
     public String getAuthor() {
 		return this.author;
@@ -39,11 +40,11 @@ public class Degustacion {
 		this.rating = rating;
 	}
 
-	public Blob getPhoto() {
+	public String getPhoto() {
 		return this.photo;
 	}
 
-	public void setPhoto(Blob photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 
@@ -63,11 +64,11 @@ public class Degustacion {
 		this.description = description;
 	}
 
-	public int getLocal_pointer() {
+	public Local getLocal_pointer() {
 		return this.local_pointer;
 	}
 
-	public void setLocal_pointer(int local_pointer) {
+	public void setLocal_pointer(Local local_pointer) {
 		this.local_pointer = local_pointer;
 	}
 
@@ -79,12 +80,20 @@ public class Degustacion {
 		this.origin = origin;
 	}
 
-	public String getLocal_dishName() {
-		return this.local_dishName;
+	public String getdish_name() {
+		return this.dish_name;
 	}
 
-	public void setLocal_dishName(String local_dishName) {
-		this.local_dishName = local_dishName;
+	public void setdish_name(String local_dishName) {
+		this.dish_name = local_dishName;
 	}
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 
 }

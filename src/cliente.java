@@ -42,15 +42,55 @@ public class cliente {
 		Response post= target.path("login").request().accept(MediaType.APPLICATION_JSON).post(Entity.json(query));
 		show(post);
 	}
+	public static void  calificar(String username,String deg ) {
+		String query = deg;
+		Response post= target.path("user").path(username).path("tasting").request().accept(MediaType.APPLICATION_JSON).post(Entity.json(query));
+		show(post);
+	}
+	public static void buscarLocal(String pattern) {
+		Response post = target.path("local").queryParam("pattern", pattern).request().accept(MediaType.APPLICATION_JSON).get(Response.class);
+		show(post);
+	}
+	public static void modificar(String nombre, String query) {
+        Response post = target.path("user").path(nombre).request().accept(MediaType.APPLICATION_JSON).put(Entity.json(query));
+        show(post);}
+	
 	
 	public static void main(String args[]) {
-		usuario();
+//		usuario();
+//		String json="{\r\n"
+//				+ "  \"author\": \"Manolito23\",\r\n"
+//				+ "  \"qualifier_taste\": \"dulce\",\r\n"
+//				+ "  \"rating\": 3,\r\n"
+//				+ "  \"photo\": \"\",\r\n"
+//				+ "  \"date\": \"2020-12-12\",\r\n"
+//				+ "  \"description\": \"Strfsad\",\r\n"
+//				+ "  \"local_pointer\": {\r\n"
+//				+ "    \"id\": 15,\r\n"
+//				+ "    \"local_address\": \"Calle de puta Nº35\",\r\n"
+//				+ "    \"local_name\": \"djnjhbfeahfkvsj\",\r\n"
+//				+ "    \"local_photo\": \"\",\r\n"
+//				+ "    \"local_tastingList\": [],\r\n"
+//				+ "    \"coordinates\": {\r\n"
+//				+ "      \"lat\": 20.0,\r\n"
+//				+ "      \"lng\": 3.5\r\n"
+//				+ "    }\r\n"
+//				+ "  },\r\n"
+//				+ "  \"origin\": \"Sda\",\r\n"
+//				+ "  \"dish_name\": \"patata\",\r\n"
+//				+ "  \"type\": \"carne\"\r\n"
+//				+ "}";
+//		calificar("Manolito23",json);
 //		login("Manolito23","locuelo01");
 //		Blob photo= null;
 //		//signup(true,"hola@w","hola","truski","male",20,"hola","adios","asdfghjk",photo,"adf","adsfa");
 //		login("Manolito23", "locuelo01");
 //		signup(true,"hola@w","hola","truski","male",20,"hola","adios","asdfghjk",photo,"adf","adsfa");
-		
+//		buscarLocal("Won");
+		String query= "{\"username\": \"Carlos35\", \"name\": \"Carlos\","
+				+ " \"password\": \"pepito\", \"email\": \"Carlos@gmail.com\", \"text_intro\": \"text\", \"photo\": \"\", \"country\": \"España\","
+				+ " \"coordinates\": {\"lat\": 23.1, \"lng\":23.3}}";
+		modificar("Carlos35",query);
 	}
 		
 }

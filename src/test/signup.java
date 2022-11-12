@@ -45,7 +45,7 @@ public class signup {
 			String name = json.getString("name");
 			String surname = json.getString("surname");
 			String text_intro = json.getString("text_intro");
-			Blob photo = (Blob) json.getJsonObject("photo");
+			String photo =json.getString("photo");//cambio de Blob a String
 			String country = json.getString("country");
 			String location = json.getString("location");
 			
@@ -58,7 +58,7 @@ public class signup {
 			ps.setInt(5,age);
 			ps.setString(6,text_intro);
 			ps.setString(7,email);
-			ps.setBlob(8,photo);
+			ps.setString(8,photo);
 			ps.setString(9,location);
 			ps.setString(10,country);
 			ps.setString(11,gender);
@@ -67,7 +67,12 @@ public class signup {
 
 			Login login = new Login();//cambiar el nombre a la clase al igual pero tiene los mismo parametros
 			login.setUsername(username);
-			login.setLogged(true);//duda
+			//comprobacion de que esta dentro
+			String sql2="select username from Usuario where email = ?;";
+			PreparedStatement ps2 = db.conn.prepareStatement(sql2);
+			ps2.setString(1,email);
+			ResultSet rs2 = ps2.executeQuery();
+			login.setLogged(rs2.next());//duda
 
 			Gson gson = new Gson();
             String json1 = gson.toJson(login);

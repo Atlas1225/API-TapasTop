@@ -2,13 +2,12 @@ package interfaces;
 
 
 import java.awt.image.BufferedImage;
-import java.sql.Blob;
 
 
 public class Galardon {
 	private int id;
 	private int level;
-	private Blob photo;
+	private String photo;
 	public int getId() {
 		return this.id;
 	}
@@ -25,11 +24,11 @@ public class Galardon {
 		this.level = level;
 	}
 
-	public Blob getPhoto() {
+	public String getPhoto() {
 		return this.photo;
 	}
 
-	public void setPhoto(Blob photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 
