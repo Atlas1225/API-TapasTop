@@ -51,7 +51,7 @@
 		       local.setLocal_photo(rs.getString("local_photo"));
 		       Coordinates coord= new Coordinates();
 		       String cor= rs.getString("coordinates");
-		       String [] split = cor.split("|");
+		       String [] split = cor.split("\\|");
 		       coord.setLat(Float.parseFloat(split[0]));
 		       coord.setLng(Float.parseFloat(split[1]));
 		       local.setCoordinates(coord);
@@ -69,7 +69,7 @@
 		    	   Local local1= new Local();
 		    	   Coordinates coordinates= new Coordinates();
 		    	   String cord= rs1.getString("coordinates");
-		    	   String [] result = cord.split("|");
+		    	   String [] result = cord.split("\\|");
 		    	   Float lat= Float.parseFloat(result[0]);  
 		    	   Float lng= Float.parseFloat(result[1]);  
 		    	   coordinates.setLat(lat);

@@ -26,8 +26,8 @@ public class cliente {
 	    System.out.println(post.readEntity(String.class));}
 	
 	
-	public static void usuario(){
-		Response post = target.path("user").path("Manolito23").request().accept(MediaType.APPLICATION_JSON).get(Response.class);
+	public static void usuario(String user){
+		Response post = target.path("user").path(user).request().accept(MediaType.APPLICATION_JSON).get(Response.class);
 			show(post);
 	}
 	public static void  login(String username, String password) {
@@ -35,11 +35,11 @@ public class cliente {
 		Response post= target.path("login").request().accept(MediaType.APPLICATION_JSON).post(Entity.json(query));
 		show(post);
 	}
-	public static void  signup(boolean active, String email, String username, String password, String gender, int age, String name, String surname, String text_intro,Blob photo,
+	public static void  signup(boolean active, String email, String username, String password, String gender, int age, String name, String text_intro, String photo,
 			String country,String location) {
-		String query = "{\"active\": \""+active+"\", \n \"email\":\""+email+"\" , \n \"username\":\""+username+"\"  , \n \"password\":\""+password+"\"  ,"
-				+ " \n \"gender\":\""+gender+"\" , \n \"age\":\""+age+"\"  , \n \"name\":\""+name+"\" , \n \"surname\":\""+surname+"\"  , \n \"text_intro\":\""+text_intro+"\" , \n \"photo\":\""+photo+"\"  , \n \"country\":\""+country+"\" , \n \"location\":\""+location+"\" \n }";
-		Response post= target.path("login").request().accept(MediaType.APPLICATION_JSON).post(Entity.json(query));
+		String query = "{\"active\": "+active+", \n \"email\":\""+email+"\" , \n \"username\":\""+username+"\"  , \n \"password\":\""+password+"\"  ,"
+				+ " \n \"gender\":\""+gender+"\" , \n \"age\":"+age+"  , \n \"name\":\""+name+"\"  , \n \"text_intro\":\""+text_intro+"\" , \n \"photo\":\""+photo+"\"  , \n \"country\":\""+country+"\" , \n \"location\":\""+location+"\" \n }";
+		Response post= target.path("signup").request().accept(MediaType.APPLICATION_JSON).post(Entity.json(query));
 		show(post);
 	}
 	public static void  calificar(String username,String deg ) {
@@ -57,7 +57,7 @@ public class cliente {
 	
 	
 	public static void main(String args[]) {
-//		usuario();
+//		usuario("Carlos35");
 //		String json="{\r\n"
 //				+ "  \"author\": \"Manolito23\",\r\n"
 //				+ "  \"qualifier_taste\": \"dulce\",\r\n"
@@ -83,14 +83,13 @@ public class cliente {
 //		calificar("Manolito23",json);
 //		login("Manolito23","locuelo01");
 //		Blob photo= null;
-//		//signup(true,"hola@w","hola","truski","male",20,"hola","adios","asdfghjk",photo,"adf","adsfa");
+		signup(false, "t1@faker.com", "Altami", "12345", "male", 21, "Altami", "text", "", "Portugal", "Centro, Madrid");
 //		login("Manolito23", "locuelo01");
 //		signup(true,"hola@w","hola","truski","male",20,"hola","adios","asdfghjk",photo,"adf","adsfa");
 //		buscarLocal("Won");
-		String query= "{\"username\": \"Carlos35\", \"name\": \"Carlos\","
-				+ " \"password\": \"pepito\", \"email\": \"Carlos@gmail.com\", \"text_intro\": \"text\", \"photo\": \"\", \"country\": \"España\","
-				+ " \"coordinates\": {\"lat\": 23.1, \"lng\":23.3}}";
-		modificar("Carlos35",query);
-	}
+//		String query= "{\"username\": \"Carlos35\", \"name\": \"Carlos\","
+//				+ " \"password\": \"pepito\", \"email\": \"Carlos@gmail.com\", \"text_intro\": \"text\", \"photo\": \"https://img.a.transfermarkt.technology/portrait/big/329145-1568022060.jpg\", \"country\": \"España\"				";
+//		modificar("Carlos35",query);
+  }
 		
 }

@@ -46,7 +46,7 @@ public class login {
             
             Login login = new Login();
             login.setUsername(username);
-            login.setLogged(rs.next());//duda
+            login.setLogged(rs.next());
 
             Gson gson = new Gson();
             String json1 = gson.toJson(login);
@@ -56,7 +56,7 @@ public class login {
 
         }catch(Exception e){
         	System.out.println(e.getMessage());
-            return Response.status(Response.Status.NOT_FOUND).entity("Login incorrecto").header("Content-Location", uriInfo.getAbsolutePath()).build();
+            return Response.status(Response.Status.NOT_FOUND).entity("\"{username\": \"NO\" ,\"logged\":false}").header("Content-Location", uriInfo.getAbsolutePath()).build();
         }
 
         

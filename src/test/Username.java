@@ -55,6 +55,11 @@ public class Username {
 //			Aquí ya tenemos el usuario
 			Usuario user= new Usuario(rs.getString("gender"),rs.getString("email"),rs.getString("username"),
 			rs.getString("password"),rs.getInt("age"));
+			user.setText_intro(rs.getString("text_intro"));
+			user.setPhoto(rs.getString("photo"));
+			user.setCountry(rs.getString("country"));
+			user.setLocation(rs.getString("location"));
+			user.setName(rs.getString("name"));
 			String sql2= "SELECT username_usuario2 FROM agrega where username_usuario1 = ?;";
 			PreparedStatement ps2 = db.conn.prepareStatement(sql2);
 			ps2.setString(1, username);
@@ -88,7 +93,7 @@ public class Username {
 				Local local1= new Local();
 				Coordinates coordinates= new Coordinates();
 				String cord= rs3.getString("coordinates");
-				String [] result = cord.split("|");
+				String [] result = cord.split("\\|");
 				Float lat= Float.parseFloat(result[0]);  
 				Float lng= Float.parseFloat(result[1]);  
 				coordinates.setLat(lat);
@@ -125,11 +130,11 @@ public class Username {
 			while(rs4.next()) {
 				String galar="select * from galardon where id=?;";
 				PreparedStatement ps5 = db.conn.prepareStatement(galar);
-				ps5.setInt(1, rs4.getInt("id_galardon"));
+				ps5.setString(1, rs4.getString("id_galardon"));
 				ResultSet rs5 = ps5.executeQuery();	
 				rs5.next();
 				Galardon galardon= new Galardon();
-				galardon.setId(rs5.getInt("id"));
+				galardon.setId(rs5.getString("id"));
 				galardon.setLevel(rs5.getInt("level"));
 				galardon.setPhoto(rs5.getString("image"));
 				award_list.add(galardon);
@@ -141,8 +146,6 @@ public class Username {
 			
 			Gson gson = new Gson();
 			String json= gson.toJson(user);
-
-			System.out.println(json);
 			
 			
 			db.closeConn();
@@ -182,7 +185,7 @@ public class Username {
      		ps.setString(8,nombre);
      		int rs = ps.executeUpdate();
      		
-      		return Response.status(Response.Status.CREATED).entity("{modified:"+(rs==1)+"}").build();
+      		return Response.status(Response.Status.OK).entity("{\"modified\":"+(rs==1)+"}").build();
       	}
       
     

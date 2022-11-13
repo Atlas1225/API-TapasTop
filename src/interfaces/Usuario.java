@@ -1,15 +1,10 @@
 package interfaces;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
+
 import java.sql.Blob;
 import java.util.ArrayList;
 
-import com.google.gson.stream.JsonWriter;
+
 
 public class Usuario {
     private boolean active;
@@ -23,7 +18,7 @@ public class Usuario {
     private int age;
     private String country;
     private String location;
-    private Blob photo;
+    private String photo;
     private ArrayList<Usuario> friends = new ArrayList<>();
     private String friend;
     private ArrayList<Degustacion> fav_foods = new ArrayList<>();
@@ -131,11 +126,11 @@ public class Usuario {
 		this.location = location;
 	}
 
-	public Blob getPhoto() {
+	public String getPhoto() {
 		return this.photo;
 	}
 
-	public void setPhoto(Blob photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 	
