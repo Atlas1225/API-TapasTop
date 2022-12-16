@@ -20,6 +20,8 @@ import javax.ws.rs.core.UriInfo;
 import com.google.gson.Gson;
 
 import javax.ws.rs.core.Context;
+
+import interfaces.GlobalStat;
 import interfaces.Login;
 @Path("/login")
 public class login {
@@ -47,7 +49,7 @@ public class login {
             Login login = new Login();
             login.setUsername(username);
             login.setLogged(rs.next());
-
+            GlobalStat.setUsername(username);
             Gson gson = new Gson();
             String json1 = gson.toJson(login);
             

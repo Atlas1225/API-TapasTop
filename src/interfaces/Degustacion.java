@@ -52,7 +52,7 @@ public class Degustacion {
 		return this.date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(java.util.Date date) {
 		this.date = date;
 	}
 

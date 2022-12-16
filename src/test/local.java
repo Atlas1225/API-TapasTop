@@ -1,28 +1,17 @@
  package test;
-  import java.io.StringReader;
-  import java.sql.Blob;
   import java.sql.PreparedStatement;
   import java.sql.ResultSet;
-  import java.sql.SQLException;
   import java.util.ArrayList;
   import java.util.List;
 
-  import javax.json.Json;
-  import javax.json.JsonObject;
-  import javax.json.JsonReader;
-  import javax.naming.NamingException;
-  import javax.ws.rs.Consumes;
   import javax.ws.rs.DefaultValue;
   import javax.ws.rs.GET;
-  import javax.ws.rs.PUT;
   import javax.ws.rs.Path;
-  import javax.ws.rs.PathParam;
   import javax.ws.rs.Produces;
   import javax.ws.rs.QueryParam;
   import javax.ws.rs.core.MediaType;
   import javax.ws.rs.core.Response;
   import javax.ws.rs.core.UriInfo;
-  import com.google.gson.reflect.TypeToken;
   import com.google.gson.Gson;
 
   import javax.ws.rs.core.Context;
@@ -58,10 +47,11 @@
 		      
 		       String sql2 ="Select * from local  l\r\n"
 						+ "inner join Degustacion d on d.id_local = l.id \r\n"
-						+ "where d.username_usuario = ?\r\n"
+						+ "where d.username_usuario = ? AND l.local_name= ? \r\n"
 						+ "Order by d.rating DESC;";
 		       PreparedStatement ps1 = db.conn.prepareStatement(sql2);
-		       ps1.setInt(1, local.getId());
+		       ps1.setString(1, GlobalStat.getUsername());
+		       ps1.setString(2, local.getLocal_name());
 		       ResultSet rs1 = ps1.executeQuery();
 		       Degustacion degustacion;
 		       while(rs1.next()) {
@@ -80,34 +70,27 @@
 		    	   local1.setLocal_name(rs1.getString("local_name"));
 		    	   local1.setLocal_photo(rs1.getString("local_photo"));
 		    	   degustacion.setAuthor(rs1.getString("username_usuario"));
-					degustacion.setLocal_pointer(local1);
-					degustacion.setDate(rs1.getDate("date"));
-					degustacion.setDescription(rs1.getString("description"));
-					degustacion.setOrigin(rs1.getString("origin"));
-					degustacion.setPhoto(rs1.getString("photo"));
-					degustacion.setQualifier_taste(rs1.getString("qualifier_taste"));
-					degustacion.setRating(rs1.getInt("rating"));
-					degustacion.setdish_name(rs1.getString("dish_name"));
-					degustacion.setType(rs1.getString("type"));
-					local.getLocal_tastingList().add(degustacion);
+		    	   degustacion.setLocal_pointer(local1);
+		    	   degustacion.setDate( new java.util.Date(rs1.getDate("date").getTime()));
+		    	   degustacion.setDescription(rs1.getString("description"));
+		    	   degustacion.setOrigin(rs1.getString("origin"));
+		    	   degustacion.setPhoto(rs1.getString("photo"));
+		    	   degustacion.setQualifier_taste(rs1.getString("qualifier_taste"));
+		    	   degustacion.setRating(rs1.getInt("rating"));
+		    	   degustacion.setdish_name(rs1.getString("dish_name"));
+		    	   degustacion.setType(rs1.getString("type"));
+		    	   local.getLocal_tastingList().add(degustacion);
 		       }
-		    	   
-		       
 		       locales.add(local);
         	}
-        	
         	Gson gson = new Gson();
         	String result = gson.toJson(locales);
-
 	  		return Response.status(Response.Status.OK).entity(result).build();
 	  	}catch(Exception e){
 	  		System.out.println(e);
 	  		return Response.status(Response.Status.NOT_FOUND).entity("locales-no-encontrados").header("Content-Location", uriInfo.getAbsolutePath()).build();
-
 	  	}
-
-	  }
-	  
+	  } 
   }
  
 /*

@@ -70,7 +70,7 @@ public class tasting {
 				
 				
 				db.closeConn();
-            	return Response.status(Response.Status.OK).entity("{tastingCreated:"+(rs2==1)+"}").build();
+            	return Response.status(Response.Status.OK).entity("{\"tastingCreated\":"+(rs2==1)+"}").build();
 
 			
 		}
